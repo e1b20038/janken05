@@ -38,7 +38,8 @@ public class Sample57Controller {
     return "sample57.html";
   }
 
-   @GetMapping("step8")
+  @GetMapping("step8")
+
   @Transactional
   public String sample58(@RequestParam Integer id, ModelMap model) {
     // 選択したフルーツを削除し，削除対象のフルーツをmodelに登録
@@ -50,5 +51,12 @@ public class Sample57Controller {
     model.addAttribute("fruits7", fruits7);
 
     return "sample57.html";
+  }
+
+  @GetMapping("step9")
+  public SseEmitter sample59() {
+    final SseEmitter sseEmitter = new SseEmitter();
+    this.shop57.asyncShowFruitsList(sseEmitter);
+    return sseEmitter;
   }
 }
